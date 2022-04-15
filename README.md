@@ -34,6 +34,16 @@ See below the list of provided utilities.
 
 Provided operations with arrays:
 
+- **Chunk:** It creates an array of elements split into groups the length of size. If array can't be split evenly, the final chunk will be the remaining elements.
+
+```go
+input:=[]int{2,3,-1,3,-2,6}
+size:=4
+output:= Chunk(input, size)
+
+// output -> {{2,3,-1,3},{-2,6}}
+```
+
 - **Drop:** It removes the elements in the provided indexes.
 
 ```go
@@ -85,15 +95,6 @@ ForEach(input, func(v int){acc+=v})
 // acc -> 11
 ```
 
-- **GroupBy:** It groups the items in the provided array by groups of N elements. N is provided as parameter
-
-```go
-input:=[]int{2,3,-1,3,-2,6}
-by:=4
-output:= GroupBy(input, by)
-
-// output -> {{2,3,-1,3},{-2,6}}
-```
 - **Reverse:** It return the reversed inpur array
 
 ```go

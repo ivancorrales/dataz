@@ -70,14 +70,14 @@ func ForEach[T any](input []T, fn func(item T)) {
 	}
 }
 
-func GroupBy[T any](input []T, length int) [][]T {
-	totalGroups := len(input) / length
-	if len(input)%length != 0 {
+func Chunk[T any](input []T, size int) [][]T {
+	totalGroups := len(input) / size
+	if len(input)%size != 0 {
 		totalGroups++
 	}
 	groups := make([][]T, totalGroups)
 	for i := 0; i < totalGroups; i++ {
-		groups[i] = input[i*length : int(math.Min(float64((i+1)*length), float64(len(input))))]
+		groups[i] = input[i*size : int(math.Min(float64((i+1)*size), float64(len(input))))]
 	}
 	return groups
 }

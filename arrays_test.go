@@ -140,30 +140,30 @@ func TestForEach(t *testing.T) {
 	assert.Equal(t, 55, output)
 }
 
-func TestGroupBy(t *testing.T) {
+func TestChunk(t *testing.T) {
 	cases := []struct {
 		input    []any
-		by       int
+		size     int
 		expected [][]any
 	}{
 		{
 			input:    []any{"a", "b", "c", "d"},
-			by:       2,
+			size:     2,
 			expected: [][]any{{"a", "b"}, {"c", "d"}},
 		},
 		{
 			input:    []any{"a", "b", "c"},
-			by:       2,
+			size:     2,
 			expected: [][]any{{"a", "b"}, {"c"}},
 		},
 		{
 			input:    []any{20, 1, .3, true, "a"},
-			by:       6,
+			size:     6,
 			expected: [][]any{{20, 1, .3, true, "a"}},
 		},
 	}
 	for _, c := range cases {
-		output := GroupBy(c.input, c.by)
+		output := Chunk(c.input, c.size)
 		assert.Equal(t, c.expected, output)
 	}
 }
