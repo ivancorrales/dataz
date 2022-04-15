@@ -1,6 +1,9 @@
 package dataz
 
-import "sort"
+import (
+	"math"
+	"sort"
+)
 
 func Reverse[T any](input []T) []T {
 	for first, last := 0, len(input)-1; first < last; first++ {
@@ -65,4 +68,16 @@ func ForEach[T any](input []T, fn func(item T)) {
 	for _, element := range input {
 		fn(element)
 	}
+}
+
+func GroupBy[T any](input []T, length int) [][]T {
+	totalGroups := len(input) / length
+	if len(input)%length != 0 {
+		totalGroups++
+	}
+	groups := make([][]T, totalGroups)
+	for i := 0; i < totalGroups; i++ {
+		groups[i] = input[i*length : int(math.Min(float64((i+1)*length), float64(len(input))))]
+	}
+	return groups
 }

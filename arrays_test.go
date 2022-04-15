@@ -139,3 +139,31 @@ func TestForEach(t *testing.T) {
 	ForEach([]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, func(v int) { output += v })
 	assert.Equal(t, 55, output)
 }
+
+func TestGroupBy(t *testing.T) {
+	cases := []struct {
+		input    []any
+		by       int
+		expected [][]any
+	}{
+		{
+			input:    []any{"a", "b", "c", "d"},
+			by:       2,
+			expected: [][]any{{"a", "b"}, {"c", "d"}},
+		},
+		{
+			input:    []any{"a", "b", "c"},
+			by:       2,
+			expected: [][]any{{"a", "b"}, {"c"}},
+		},
+		{
+			input:    []any{20, 1, .3, true, "a"},
+			by:       6,
+			expected: [][]any{{20, 1, .3, true, "a"}},
+		},
+	}
+	for _, c := range cases {
+		output := GroupBy(c.input, c.by)
+		assert.Equal(t, c.expected, output)
+	}
+}
