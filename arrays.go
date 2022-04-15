@@ -60,3 +60,9 @@ func Duplicates[T comparable](input []T) []T {
 	}
 	return duplicates
 }
+
+func ForEach[T any](input []T, fn func(item T)) {
+	for _, element := range input {
+		fn(element)
+	}
+}
