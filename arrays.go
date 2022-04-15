@@ -47,3 +47,16 @@ func Drop[T any](input []T, indexes ...int) []T {
 	}
 	return input
 }
+
+func Duplicates[T comparable](input []T) []T {
+	duplicates := make([]T, 0)
+	inputSet := make(map[T]struct{})
+	for _, element := range input {
+		if _, ok := inputSet[element]; ok {
+			duplicates = append(duplicates, element)
+			continue
+		}
+		inputSet[element] = struct{}{}
+	}
+	return duplicates
+}

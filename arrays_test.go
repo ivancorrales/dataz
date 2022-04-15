@@ -108,3 +108,28 @@ func TestDrop(t *testing.T) {
 		assert.Equal(t, output, c.expected)
 	}
 }
+
+func TestDuplicates_string(t *testing.T) {
+	cases := []struct {
+		input    []string
+		expected []string
+	}{
+		{
+			input:    []string{"home", "port", "window", "home", "table", "window"},
+			expected: []string{"home", "window"},
+		},
+		{
+			input:    []string{"home", "port", "table", "window", "window", "table", "port", "home"},
+			expected: []string{"window", "table", "port", "home"},
+		},
+		{
+			input:    []string{"home", "port", "table", "window"},
+			expected: []string{},
+		},
+	}
+
+	for _, c := range cases {
+		output := Duplicates(c.input)
+		assert.EqualValues(t, output, c.expected)
+	}
+}
