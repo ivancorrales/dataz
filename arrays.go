@@ -70,6 +70,14 @@ func ForEach[T any](input []T, fn func(item T)) {
 	}
 }
 
+func Concat[T any](input [][]T) []T {
+	output := make([]T, 0)
+	for i := range input {
+		output = append(output, input[i]...)
+	}
+	return output
+}
+
 func Chunk[T any](input []T, size int) [][]T {
 	totalGroups := len(input) / size
 	if len(input)%size != 0 {

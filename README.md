@@ -44,6 +44,15 @@ output:= Chunk(input, size)
 // output -> {{2,3,-1,3},{-2,6}}
 ```
 
+- **Concat:** It creates a new array concatenating array with any additional arrays and/or values.
+
+```go
+input:[][]string{{"a", "b"}, {}, {"c"}, {"d"}},
+output:= Concat(input)
+
+// output -> {"a","b","c","d"}
+```
+
 - **Drop:** It removes the elements in the provided indexes.
 
 ```go

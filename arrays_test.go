@@ -167,3 +167,23 @@ func TestChunk(t *testing.T) {
 		assert.Equal(t, c.expected, output)
 	}
 }
+
+func TestConcat(t *testing.T) {
+	cases := []struct {
+		input    [][]any
+		expected []any
+	}{
+		{
+			input:    [][]any{{"a", "b"}, {"c"}, {"d"}},
+			expected: []any{"a", "b", "c", "d"},
+		},
+		{
+			input:    [][]any{{"a", "b"}, {}, {"c"}, {"d"}},
+			expected: []any{"a", "b", "c", "d"},
+		},
+	}
+	for _, c := range cases {
+		output := Concat(c.input)
+		assert.Equal(t, c.expected, output)
+	}
+}
