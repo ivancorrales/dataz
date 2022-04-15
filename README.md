@@ -47,10 +47,20 @@ output:= Chunk(input, size)
 - **Concat:** It creates a new array concatenating array with any additional arrays and/or values.
 
 ```go
-input:[][]string{{"a", "b"}, {}, {"c"}, {"d"}},
+input:[][]string{{"a", "b"}, {}, {"c"}, {"d"}}
 output:= Concat(input)
 
 // output -> {"a","b","c","d"}
+```
+
+- **Difference:** It creates an array of array values not included in the other given arrays.
+
+```go
+input:=  []string{"a", "b", "c", "d"}
+input2:= []string{"a", "b", "d", "e"}
+output:= Difference(input,input2)
+
+// output -> {"e","c"}
 ```
 
 - **Drop:** It removes the elements in the provided indexes.
