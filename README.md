@@ -104,6 +104,16 @@ output:=  Filter(input, func(v int)bool{return v>2})
 // output -> []int{3,3,6}
 ```
 
+- **Flatten:** It removes those elements that doesn't match with the given criteria.
+
+```go
+input:=   [][]int{{2,3},{-1},{3,-2,6}}
+
+output:=  Flatten(input)
+
+// output -> []int{2,3,-1,3,-2,6}
+```
+
 - **ForEach:** It performs an action for each element in the input array.
 
 ```go

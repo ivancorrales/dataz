@@ -113,3 +113,11 @@ func Difference[T comparable](input, input2 []T) []T {
 	}
 	return output
 }
+
+func Flatten[T any](input [][]T) []T {
+	out := make([]T, 0)
+	for i := range input {
+		out = append(out, input[i]...)
+	}
+	return out
+}

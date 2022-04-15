@@ -205,3 +205,19 @@ func TestDifference_string(t *testing.T) {
 		assert.Equal(t, c.expected, output)
 	}
 }
+
+func TestFlatten_string(t *testing.T) {
+	cases := []struct {
+		input    [][]string
+		expected []string
+	}{
+		{
+			input:    [][]string{{"a"}, {"b", "c"}, {"d", "e", "f"}},
+			expected: []string{"a", "b", "c", "d", "e", "f"},
+		},
+	}
+	for _, c := range cases {
+		output := Flatten(c.input)
+		assert.Equal(t, c.expected, output)
+	}
+}
