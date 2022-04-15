@@ -13,6 +13,10 @@ type Person struct {
 	parent    *Person
 }
 
+func isLess[T comparable](a, b T) bool {
+	return a < b
+}
+
 func (p Person) Gender() string {
 	if p.isFemale {
 		return "girl"
@@ -46,6 +50,7 @@ func main() {
 	}
 	show("Students A")
 	printDetails(studentsClassroomA)
+
 	show("Students A (Reverse)")
 	output := dataz.Reverse(studentsClassroomA)
 	printDetails(output)
