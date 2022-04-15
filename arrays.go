@@ -89,3 +89,27 @@ func Chunk[T any](input []T, size int) [][]T {
 	}
 	return groups
 }
+
+func Difference[T comparable](input, input2 []T) []T {
+	output := make([]T, 0)
+	set, set2 := make(map[T]struct{}), make(map[T]struct{})
+	for _, element := range input {
+		set[element] = struct{}{}
+	}
+	for _, element := range input2 {
+		set2[element] = struct{}{}
+	}
+	for i := range input2 {
+		val := input2[i]
+		if _, ok := set[val]; !ok {
+			output = append(output, val)
+		}
+	}
+	for i := range input {
+		val := input[i]
+		if _, ok := set2[val]; !ok {
+			output = append(output, val)
+		}
+	}
+	return output
+}

@@ -187,3 +187,21 @@ func TestConcat(t *testing.T) {
 		assert.Equal(t, c.expected, output)
 	}
 }
+
+func TestDifference_string(t *testing.T) {
+	cases := []struct {
+		input    []string
+		input2   []string
+		expected []string
+	}{
+		{
+			input:    []string{"a", "b", "c", "d"},
+			input2:   []string{"a", "b", "d", "e"},
+			expected: []string{"e", "c"},
+		},
+	}
+	for _, c := range cases {
+		output := Difference(c.input, c.input2)
+		assert.Equal(t, c.expected, output)
+	}
+}
