@@ -29,12 +29,12 @@ func TestReverse(t *testing.T) {
 
 func TestDropWhile_string(t *testing.T) {
 	cases := []struct {
-		input    string{}
-		expected string{}
+		input    []string
+		expected []string
 		fn       func(string) bool
 	}{
 		{
-			input:    []string{"home", "port", "table"},
+			input:    []string{"home", "port", "table", "window"},
 			expected: []string{"home"},
 			fn:       func(item string) bool { return !strings.Contains(item, "t") },
 		},
@@ -42,6 +42,69 @@ func TestDropWhile_string(t *testing.T) {
 
 	for _, c := range cases {
 		output := DropWhile(c.input, c.fn)
+		assert.Equal(t, output, c.expected)
+	}
+}
+
+func TestFilter_string(t *testing.T) {
+	cases := []struct {
+		input    []string
+		expected []string
+		fn       func(string) bool
+	}{
+		{
+			input:    []string{"home", "port", "table", "window"},
+			expected: []string{"home", "window"},
+			fn:       func(item string) bool { return !strings.Contains(item, "t") },
+		},
+	}
+
+	for _, c := range cases {
+		output := Filter(c.input, c.fn)
+		assert.Equal(t, output, c.expected)
+	}
+}
+
+func TestDrop(t *testing.T) {
+	cases := []struct {
+		input    []any
+		expected []any
+		indexes  []int
+	}{
+		{
+			input:    []any{"home", "port", "table", "window"},
+			expected: []any{"home", "window"},
+			indexes:  []int{1, 2},
+		},
+		{
+			input:    []any{"home", "port", "table", "window"},
+			expected: []any{"home", "port", "table", "window"},
+			indexes:  []int{},
+		},
+		{
+			input:    []any{"home", "port", "table", "window"},
+			expected: []any{"home", "port", "table", "window"},
+			indexes:  []int{-2},
+		},
+		{
+			input:    []any{"home", "port", "table", "window"},
+			expected: []any{"home", "port", "table", "window"},
+			indexes:  []int{20},
+		},
+		{
+			input:    []any{"home", "port", "table", "window"},
+			expected: []any{"home", "port", "window"},
+			indexes:  []int{20, 2},
+		},
+		{
+			input:    []any{"home", "port", "table", "window"},
+			expected: []any{"home", "window"},
+			indexes:  []int{2, 1},
+		},
+	}
+
+	for _, c := range cases {
+		output := Drop(c.input, c.indexes...)
 		assert.Equal(t, output, c.expected)
 	}
 }
